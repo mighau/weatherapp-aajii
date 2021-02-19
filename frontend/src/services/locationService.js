@@ -1,6 +1,6 @@
 const baseURL = process.env.ENDPOINT;
 
-const getCoordinates = async () => {
+const getCoordinates = () => {
   const success = (position) => {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
@@ -11,14 +11,16 @@ const getCoordinates = async () => {
   };
 
   const error = () => {
+    console.log('location unavailable');
     return 'Unable to retrieve your location';
   };
 
   if (!navigator.geolocation) {
+    console.log('navigator unavailable');
     return 'Geolocation is not supported by your browser';
   } else {
-    status.textContent = 'Locating…';
-    navigator.geolocation.getCurrentPosition(success, error);
+    console.log('locating...');
+    navigator.geolocation.getCurrentPosition((p) => success(p), error);
   }
 };
 // fetching the city of the user according to the coordinates

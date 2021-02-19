@@ -15,8 +15,6 @@ const fetchWeather = async ({ latitude, longitude }) => {
 };
 
 const fetchCity = async ({ latitude, longitude }) => {
-  console.log(latitude, longitude);
-
   const endpointForCity = `${gcpURI}?latlng=${latitude},${longitude}&key=${gcpId}`;
   const response = await fetch(endpointForCity);
   return response ? response.json() : {};
