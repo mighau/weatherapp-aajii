@@ -9,7 +9,6 @@ const App = () => {
   const [weatherConditions, setWeatherConditions] = useState({});
   const [location, setLocation] = useState({});
   const [city, setCity] = useState('...');
-  const [cityError, setCityError] = useState('');
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -61,9 +60,8 @@ const App = () => {
         try {
           const fetchedCity = (await locationService.getCity(location)).city;
           setCity(fetchedCity);
-          setCityError(null);
         } catch (error) {
-          setCityError(`Could not locate your city: ${error.message}`);
+          setCity(null);
         }
       }
     };
@@ -73,7 +71,6 @@ const App = () => {
   return (
     <div>
       {alert && <Alert message={alert} />}
-      {cityError && <Alert message={cityError} />}
       {location.latitude && location.longitude && weatherConditions.current ? (
         <Weather
           location={location}

@@ -31,7 +31,11 @@ const Weather = ({ city, current, hourly }) => {
   return (
     <div>
       <div className="weather">
-        <h2>Weather conditions in {city}</h2>
+        {city ? (
+          <h2>Weather conditions in {city}</h2>
+        ) : (
+          <h2>Weather conditions in your location:</h2>
+        )}
         {currentText && (
           <p align="center">
             {currentTime} - <b>{currentText}</b>
