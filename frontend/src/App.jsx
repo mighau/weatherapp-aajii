@@ -8,64 +8,83 @@ const App = () => {
   const [alert, setAlert] = useState(null);
   const [weatherConditions, setWeatherConditions] = useState({});
   const [location, setLocation] = useState({});
+  const [city, setCity] = useState('...');
+  const [cityError, setCityError] = useState('');
 
   useEffect(() => {
     const fetchLocation = async () => {
+      /* eslint-disable-next-line no-undef */
       if (!navigator.geolocation) {
-        setAlert('Geolocation is not supported by your browser');
+        const newAlert = 'Geolocation is not supported by your browser';
+        setAlert(newAlert);
       } else {
-        navigator.geolocation.getCurrentPosition((position) => {
-          setLocation({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-          setAlert(null);
-        });
+        /* eslint-disable-next-line no-undef */
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLocation({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude,
+            });
+          },
+          (error) => {
+            const newAlerts = `Enable location to use the service. Error: ${error.message}`;
+            setAlert(newAlerts);
+          }
+        );
       }
     };
     fetchLocation();
   }, []);
 
   useEffect(() => {
-    const fetchCity = async () => {
-      if (location.latitude && location.longitude) {
-        setLocation({
-          ...location,
-          city: `${(await locationService.getCity(location)).city}`,
-        });
-        setAlert(null);
-      }
-    };
-    fetchCity();
-  }, [weatherConditions]);
-
-  useEffect(() => {
     const fetchWeather = async () => {
       if (location.latitude && location.longitude) {
-        const weatherData = await weatherService.getWeatherFromApi(location);
-        const weatherObj = {
-          current: weatherData.current,
-          hourly: weatherData.hourly,
-        };
-        setWeatherConditions(weatherObj);
+        try {
+          const weatherData = await weatherService.getWeatherFromApi(location);
+          const weatherObj = {
+            current: weatherData.current,
+            hourly: weatherData.hourly,
+          };
+          setWeatherConditions(weatherObj);
+          setAlert(null);
+        } catch (error) {
+          setAlert(`Backend error occurred: ${error.message}`);
+        }
       }
     };
     fetchWeather();
   }, [location]);
 
+  useEffect(() => {
+    const fetchCity = async () => {
+      if (location.latitude && location.longitude) {
+        try {
+          const fetchedCity = (await locationService.getCity(location)).city;
+          setCity(fetchedCity);
+          setCityError(null);
+        } catch (error) {
+          setCityError(`Could not locate your city: ${error.message}`);
+        }
+      }
+    };
+    fetchCity();
+  }, [weatherConditions]);
+
   return (
     <div>
       {alert && <Alert message={alert} />}
+      {cityError && <Alert message={cityError} />}
       {location.latitude && location.longitude && weatherConditions.current ? (
         <Weather
           location={location}
+          city={city}
           current={weatherConditions.current}
           hourly={weatherConditions.hourly}
         />
+      ) : !alert ? (
+        <h2>Please wait...</h2>
       ) : (
-        <h3 className="wrong">
-          Everything is fine, I just need to fetch the data :)
-        </h3>
+        <h2>Unable to continue to the service.</h2>
       )}
     </div>
   );

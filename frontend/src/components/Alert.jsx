@@ -5,7 +5,7 @@ const Alert = ({ message }) => {
     return null;
   }
 
-  return <div className="alert">{message}</div>;
+  return <p className="alert">{message}</p>;
 };
 
 export default Alert;

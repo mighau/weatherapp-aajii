@@ -9,6 +9,7 @@ const mapURI =
 const gcpURI = `https://maps.googleapis.com/maps/api/geocode/json`;
 
 const fetchWeather = async ({ latitude, longitude }) => {
+  console.log('New weather request');
   const endpointForWeather = `${mapURI}/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,daily,alerts&units=metric&appid=${appId}`;
   const response = await fetch(endpointForWeather);
   return response ? response.json() : {};

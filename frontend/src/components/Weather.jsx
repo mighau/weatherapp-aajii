@@ -1,6 +1,7 @@
 import React from 'react';
 import Forecast from './Forecast';
-const Weather = ({ location, current, hourly }) => {
+
+const Weather = ({ city, current, hourly }) => {
   const timeConverter = (unixTime) => {
     const date = new Date(unixTime * 1000);
     const months = [
@@ -20,7 +21,7 @@ const Weather = ({ location, current, hourly }) => {
     const formattedTime = `${date.getDate()} ${
       months[date.getMonth()]
     } ${date.getFullYear()} - ${date.getHours()}:${
-      date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+      date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
     }`;
     return formattedTime;
   };
@@ -30,7 +31,7 @@ const Weather = ({ location, current, hourly }) => {
   return (
     <div>
       <div className="weather">
-        <h2>Weather conditions in {location.city}</h2>
+        <h2>Weather conditions in {city}</h2>
         {currentText && (
           <p align="center">
             {currentTime} - <b>{currentText}</b>

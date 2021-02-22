@@ -9,6 +9,6 @@ COPY package*.json /src/app/weatherapp-backend/
 
 RUN npm install
 
-# If ran outside of docker-compose, uncomment: 
-#COPY ./ /src/app/weatherapp-backend/
-#CMD npm run dev
+# If ran on local development environment, comment the rest out: 
+COPY ./ /src/app/weatherapp-backend/
+CMD npm run dev

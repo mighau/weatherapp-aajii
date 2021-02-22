@@ -28,3 +28,7 @@ body {
 .worng {
   justify-content: center;
 }
+
+.alerts {
+  list-style-type: none;
+}

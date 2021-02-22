@@ -3,7 +3,7 @@ import React from 'react';
 const Forecast = ({ forecastData, timeConverter }) => {
   const text = forecastData.weather[0].main;
   const icon = forecastData.weather[0].icon.slice(0, -1);
-  const temperature = Math.round(forecastData.temp * 10) / 10 + '°C';
+  const temperature = `${Math.round(forecastData.temp * 10) / 10} °C`;
 
   return (
     <li>

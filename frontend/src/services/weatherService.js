@@ -1,14 +1,13 @@
+import axios from 'axios';
+
 const baseURL = process.env.ENDPOINT;
 
 const getWeatherFromApi = async ({ latitude, longitude }) => {
-  try {
-    const response = await fetch(`${baseURL}/weather/${latitude}/${longitude}`);
-    return response.json();
-  } catch (error) {
-    console.log(error);
-  }
+  const response = await axios.get(
+    `${baseURL}/weather/${latitude}/${longitude}`
+  );
 
-  return {};
+  return response.data;
 };
 
 export default { getWeatherFromApi };

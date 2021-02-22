@@ -2,7 +2,6 @@ const router = require('koa-router')();
 const controllers = require('./controllers');
 
 router.get('/api/weather/:latitude/:longitude', async (ctx) => {
-  console.log('weather request');
   const coordinates = {
     latitude: Number(ctx.params.latitude),
     longitude: Number(ctx.params.longitude),
@@ -18,7 +17,7 @@ router.get('/api/weather/:latitude/:longitude', async (ctx) => {
   };
 
   ctx.type = 'application/json; charset=utf-8';
-  ctx.body = weatherData ? weatherData : {};
+  ctx.body = weatherData || {};
 });
 
 router.get('/api/city/:latitude/:longitude', async (ctx) => {
