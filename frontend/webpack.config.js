@@ -5,7 +5,9 @@ const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const GLOBALS = {
-  'process.env.ENDPOINT': JSON.stringify(process.env.ENDPOINT || 'http://0.0.0.0:9000/api'),
+  'process.env.ENDPOINT': JSON.stringify(
+    process.env.ENDPOINT || 'http://0.0.0.0:9000/api'
+  ),
 };
 
 module.exports = {
@@ -17,13 +19,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [
-      'src',
-      'node_modules',
-    ],
+    modules: ['src', 'node_modules'],
   },
   devServer: {
-    contentBase: 'src/public',
+    contentBase: './public',
     historyApiFallback: true,
     disableHostCheck: true,
     host: process.env.HOST || '0.0.0.0',
@@ -42,23 +41,24 @@ module.exports = {
         query: {
           presets: [
             '@babel/preset-react',
-            ['@babel/env', { targets: { browsers: ['last 2 versions'] }, modules: false }],
+            [
+              '@babel/env',
+              { targets: { browsers: ['last 2 versions'] }, modules: false },
+            ],
           ],
-          plugins: [
-            '@babel/plugin-proposal-class-properties',
-          ],
+          plugins: ['@babel/plugin-proposal-class-properties'],
         },
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/public/index.html',
+      template: './public/index.html',
       filename: 'index.html',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new TransferWebpackPlugin([{ from: 'src/public' }], '.'),
+    new TransferWebpackPlugin([{ from: './public' }], '.'),
     new webpack.DefinePlugin(GLOBALS),
   ],
 };
