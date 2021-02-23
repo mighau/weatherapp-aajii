@@ -25,7 +25,7 @@ Weatherapp utilises koa in the backend, where the static frontend is served. Fro
 
 ### Environment variables
 
-Create a file named `.env` to the `backend` folder with the following content:
+Create a file named `.env` to the `/backend` folder with the following content:
 
 > APPID=(your openweathermap API key)
 
