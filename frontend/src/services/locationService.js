@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://0.0.0.0:9000/api';
+const baseURL = 'https://weatherapp-wn3jf3onvq-uc.a.run.app/api';
 
 // fetching the city of the user according to the coordinates
 const getCity = async ({ latitude, longitude }) => {

@@ -11,4 +11,4 @@ RUN npm install
 
 # If ran on local development environment, comment the rest out: 
 COPY ./ /src/app/weatherapp-backend/
-CMD npm run dev
+CMD npm start

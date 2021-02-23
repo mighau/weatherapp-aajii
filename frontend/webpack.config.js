@@ -5,7 +5,9 @@ const TransferWebpackPlugin = require('transfer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const GLOBALS = {
-  'process.env.ENDPOINT': JSON.stringify(process.env.ENDPOINT || 'http://0.0.0.0:9000/api'),
+  'process.env.ENDPOINT': JSON.stringify(
+    process.env.ENDPOINT || 'https://weatherapp-wn3jf3onvq-uc.a.run.app/api'
+  ),
 };
 
 module.exports = {
@@ -17,10 +19,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    modules: [
-      'src',
-      'node_modules',
-    ],
+    modules: ['src', 'node_modules'],
   },
   devServer: {
     contentBase: 'src/public',
@@ -42,11 +41,12 @@ module.exports = {
         query: {
           presets: [
             '@babel/preset-react',
-            ['@babel/env', { targets: { browsers: ['last 2 versions'] }, modules: false }],
+            [
+              '@babel/env',
+              { targets: { browsers: ['last 2 versions'] }, modules: false },
+            ],
           ],
-          plugins: [
-            '@babel/plugin-proposal-class-properties',
-          ],
+          plugins: ['@babel/plugin-proposal-class-properties'],
         },
       },
     ],

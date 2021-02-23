@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = 'http://0.0.0.0:9000/api';
+const baseURL = 'https://weatherapp-wn3jf3onvq-uc.a.run.app/api';
 
 const getWeatherFromApi = async ({ latitude, longitude }) => {
   const response = await axios.get(
