@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseURL = process.env.ENDPOINT;
+const baseURL = 'http://0.0.0.0:9000/api';
 
 const getWeatherFromApi = async ({ latitude, longitude }) => {
   const response = await axios.get(

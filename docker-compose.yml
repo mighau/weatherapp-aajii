@@ -11,15 +11,15 @@ services:
     ports:
       - 9000:9000
     command: npm start
-
-  frontend:
-    build: ./frontend
-    volumes:
-      - ./frontend:/src/app/weatherapp-frontend
-    expose:
-      - 8000
-    ports:
-      - 8000:8000
-    links:
-      - backend
-    command: npm start
+### when running frontend separately, uncomment the following: ###
+#  frontend:
+#    build: ./frontend
+#    volumes:
+#      - ./frontend:/src/app/weatherapp-frontend
+#    expose:
+#      - 8000
+#    ports:
+#      - 8000:8000
+#    links:
+#      - backend
+#    command: npm start
