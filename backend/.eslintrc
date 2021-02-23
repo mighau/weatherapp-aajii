@@ -1,12 +1,17 @@
 {
   "parser": "babel-eslint",
-  "extends": "standard",
+  "extends": ["standard", "prettier"],
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "rules": {
     "semi": ["error", "always"],
-    "comma-dangle": ["error", "always"]
+    "comma-dangle": [
+      "error",
+      { "imports": "never", "objects": "always-multiline" }
+    ],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }]
   }
 }

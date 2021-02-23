@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/src/app/weatherapp-backend
+      - ./backend/.env:/src/app/weatherapp-backend/.env
+    expose:
+      - 9000
+    ports:
+      - 9000:9000
+    command: npm start
+### when running frontend separately, uncomment the following: ###
+#  frontend:
+#    build: ./frontend
+#    volumes:
+#      - ./frontend:/src/app/weatherapp-frontend
+#    expose:
+#      - 8000
+#    ports:
+#      - 8000:8000
+#    links:
+#      - backend
+#    command: npm start
