@@ -11,5 +11,5 @@ RUN npm install
 RUN npm install -g webpack webpack-dev-server
 
 # If ran on local development environment, comment the rest out: 
-COPY ./ /src/app/weatherapp-frontend/
-CMD npm start
+#COPY ./ /src/app/weatherapp-frontend/
+#CMD npm start
