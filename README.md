@@ -40,7 +40,7 @@ To run the app in the docker containers with hot-reload available, do the follow
 
 1. Uncomment everything in the `docker-compose.yaml` file.
 2. Make sure the accordingly marked parts in dockerfiles located `/frontend` and `/backend` are commented out.
-3. go to the root folder (the folder where the `docker-compose.yaml` file is located) and run the following:
+3. Go to the root folder (the folder where the `docker-compose.yaml` file is located) and run the following:
 
 ```
    $ docker-compose up -d
