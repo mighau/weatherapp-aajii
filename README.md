@@ -28,8 +28,8 @@ Weatherapp utilises koa in the backend, where the static frontend is served. Fro
 Create a file named `.env` to the `backend` folder with the following content:
 
 ```
-> APPID=(your openweathermap API key)\
-> GCP_APIKEY=(your Google Geolocation API key)
+APPID=(your openweathermap API key)
+GCP_APIKEY=(your Google Geolocation API key)
 ```
 
 _NOTE: if GCP API key is omitted, the app still works, but without the city information displayed in browser._
